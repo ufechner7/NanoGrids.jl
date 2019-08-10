@@ -2,7 +2,10 @@
 
 using DataFrames, FeatherFiles, Statistics 
 
+const AREA = 16.0 # area of the solar panels
+
 function calc_average_power(df)
+    return AREA * mean(df.Power_Generation)
 end
 
 function calc_rel_availability(df, min_power)
@@ -16,5 +19,6 @@ end
 
 if !isdefined(@__MODULE__, :df) df=DataFrame(load("data/solaryear.feather")) end
 
-println("Percentage of solar power availability: ", round(calc_non_zero_percent(df), digits=2), "%")
+println("Percentage of solar power availability [%]: ", round(calc_non_zero_percent(df), digits=2))
+println("Average solar power [W]:                   ", round(calc_average_power(df), digits=2))
 
