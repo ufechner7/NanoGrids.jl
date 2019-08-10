@@ -1,5 +1,4 @@
-# Functions to calculate the availabily of solar power over the year
-
+# Script to calculate the availabily of solar power over the year
 using DataFrames, FeatherFiles, Statistics 
 
 const AREA = 16.0 # area of the solar panels
@@ -21,7 +20,8 @@ end
 if !isdefined(@__MODULE__, :df) df=DataFrame(load("data/solaryear.feather")) end
 
 av = calc_average_power(df)
-println("Percentage of solar power availability   [%]: ", round(calc_non_zero_percent(df), digits=2))
-println("Percentage of time for more than average [%]: ", round(calc_rel_availability(df, av), digits=2))
-println("Average solar power [W]:                     ", round(calc_average_power(df), digits=2))
+println("Average solar power [W]:                     ", round(av, digits=1))
+println("Percentage of solar power availability   [%]: ", round(calc_non_zero_percent(df), digits=1))
+println("Percentage of time for more than average [%]: ", round(calc_rel_availability(df, av), digits=1))
+println("Percentage of time for more than 50% av. [%]: ", round(calc_rel_availability(df, av/2), digits=1))
 
