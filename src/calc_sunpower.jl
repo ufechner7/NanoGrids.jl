@@ -9,12 +9,13 @@ function calc_average_power(df)
 end
 
 function calc_rel_availability(df, min_power)
+    minpower = df[df.Power_Generation .> min_power, :Power_Generation]
+    minpowercount = size(minpower)[1]
+    return 100 * minpowercount / size(df)[1]
 end
 
 function calc_non_zero_percent(df)
-    nonzeropower = df[df.Power_Generation .> 0, :Power_Generation]
-    nonzerocount = size(nonzeropower)[1]
-    return 100 * nonzerocount / size(df)[1]
+    return calc_rel_availability(df, 0.0)
 end
 
 if !isdefined(@__MODULE__, :df) df=DataFrame(load("data/solaryear.feather")) end
