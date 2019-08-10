@@ -1,6 +1,12 @@
 # Functions to calculate the availabily of solar power over the year
 
-using DataFrames, FeatherFiles 
+using DataFrames, FeatherFiles, Statistics 
+
+function calc_average_power(df)
+end
+
+function calc_rel_availability(df, min_power)
+end
 
 function calc_non_zero_percent(df)
     nonzeropower = df[df.Power_Generation .> 0, :Power_Generation]
