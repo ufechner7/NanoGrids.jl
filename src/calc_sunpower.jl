@@ -9,7 +9,7 @@ function calc_average_power(df)
 end
 
 function calc_rel_availability(df, min_power)
-    minpower = df[df.Power_Generation .> min_power, :Power_Generation]
+    minpower = df[df.Power_Generation * AREA .> min_power, :Power_Generation]
     minpowercount = size(minpower)[1]
     return 100 * minpowercount / size(df)[1]
 end
@@ -20,6 +20,8 @@ end
 
 if !isdefined(@__MODULE__, :df) df=DataFrame(load("data/solaryear.feather")) end
 
-println("Percentage of solar power availability [%]: ", round(calc_non_zero_percent(df), digits=2))
-println("Average solar power [W]:                   ", round(calc_average_power(df), digits=2))
+av = calc_average_power(df)
+println("Percentage of solar power availability   [%]: ", round(calc_non_zero_percent(df), digits=2))
+println("Percentage of time for more than average [%]: ", round(calc_rel_availability(df, av), digits=2))
+println("Average solar power [W]:                     ", round(calc_average_power(df), digits=2))
 
