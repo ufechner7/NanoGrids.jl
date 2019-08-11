@@ -1,1 +1,2 @@
 1. calculate the amount of battery storage needed to achieve 80% availibility of 50% of the average power
+1.1 calculate the availibility for a given amount of battery storage and load
