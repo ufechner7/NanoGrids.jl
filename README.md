@@ -10,6 +10,7 @@ You can download and install Julia from https://julialang.org/downloads/
 The following packages must be installed:
 - CSV.jl
 - DataFrames.jl
+- Statistics.jl
 - PyPlot.jl
 - FeatherFiles.jl
 
@@ -18,6 +19,7 @@ You can install them by first lauchning Julia and then entering the following co
 using Pkg
 Pkg.add("CSV")
 Pkg.add("DataFrames")
+Pkg.add("Statistics")
 Pkg.add("PyPlot")
 Pkg.add("FeatherFiles")
 using PyPlot
