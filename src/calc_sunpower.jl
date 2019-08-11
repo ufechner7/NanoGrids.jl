@@ -9,8 +9,7 @@ end
 
 function calc_rel_availability(df, min_power)
     minpower = df[df.Power_Generation * AREA .> min_power, :Power_Generation]
-    minpowercount = size(minpower)[1]
-    return 100 * minpowercount / size(df)[1]
+    return 100 * size(minpower, 1) / size(df, 1)
 end
 
 if !isdefined(@__MODULE__, :df) df=DataFrame(load("data/solaryear.feather")) end
