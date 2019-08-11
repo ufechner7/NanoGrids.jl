@@ -1,6 +1,6 @@
-using CSV, DataFrames, PyPlot, Statistics, FeatherFiles
+using CSV, DataFrames, FeatherFiles
 
-AREA = 16.0 # area of the solar panels
+# Data from Gouda, The Netherlands
 
 FILE_NAME = "./data/1_2008_Solar_Final_52.0 4.7.csv"
 df1 = CSV.File(FILE_NAME, normalizenames=true) |> DataFrame!
@@ -39,6 +39,4 @@ FILE_NAME = "./data/12_2008_Solar_Final_52.0 4.7.csv"
 df12 = CSV.File(FILE_NAME, normalizenames=true) |> DataFrame!
 
 df = [df1;df2;df3;df4;df5;df6;df7;df8;df9;df10;df11;df12]
-plot(df.Power_Generation*AREA)
-mean(df.Power_Generation*AREA)
 save("./data/solaryear.feather", df)
