@@ -22,11 +22,11 @@ function calc_rel_availability(df, min_power)
     return 100 * size(minpower, 1) / size(df, 1)
 end
 
-if !isdefined(@__MODULE__, :df) df=DataFrame(load("data/windyear.feather")) end
+if !isdefined(@__MODULE__, :df) dfw=DataFrame(load("data/windyear.feather")) end
 
-av = calc_average_power(df)
+av = calc_average_power(dfw)
 println("Average wind power [W]:                      ", round(av, digits=1))
-println("Capacity factor [%]:                          ", round(calc_capacity_factor(df), digits=1))
-println("Percentage of wind power availability    [%]: ", round(calc_rel_availability(df, 0.0), digits=1))
-println("Percentage of time for more than 50% av. [%]: ", round(calc_rel_availability(df, av/2), digits=1))
-println("Percentage of time for more than average [%]: ", round(calc_rel_availability(df, av), digits=1))
+println("Capacity factor [%]:                          ", round(calc_capacity_factor(dfw), digits=1))
+println("Percentage of wind power availability    [%]: ", round(calc_rel_availability(dfw, 0.0), digits=1))
+println("Percentage of time for more than 50% av. [%]: ", round(calc_rel_availability(dfw, av/2), digits=1))
+println("Percentage of time for more than average [%]: ", round(calc_rel_availability(dfw, av), digits=1))
